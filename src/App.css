@@ -1,0 +1,161 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+hr {
+    border: 1px solid #8b8b8b;
+    margin: 0;
+}
+
+/* .App {} */
+
+/* .menuHeader {
+    
+} */
+
+header {
+    background-color: #98b4e4;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+}
+
+.contenidoTitulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.imgLogo {
+    width: 10%;
+    height: 10%;
+}
+
+header h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+    text-align: center;
+}
+
+header h1:hover {
+    cursor: pointer;
+}
+
+.menuHeader nav {
+    text-align: center;
+}
+
+.menuHeader nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menuHeader nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+.menuHeader nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+.eslogan {
+    padding: 20px;
+    background-color: rgba(49, 48, 48, 0.944);
+    color: white;
+}
+
+.textoEslogan {
+    width: 50%;
+    margin: auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.content {
+    padding: 20px;
+}
+#acerca {
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.acercaTitulo{
+    width: 50%;
+    margin: auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    padding: 20px;
+}
+.acercaParrafo{
+    width: 50%;
+    margin: auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+.imgAcerca {
+    width: 30%;
+    height: 30%;
+}
+
+#mision {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+#vision {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+#objetivos {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.info {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.footer {
+    background-color: #2c2c2c;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+/* EXTRAS TRAIDOS DE https://www.cattocss.com */
+.grow {
+    transition: .5s, color .10s;
+    -webkit-transition: .5s, color .10s;
+    -moz-transition: .5s, color .10s;
+}
+
+.grow:hover {
+    transform: scale3d(1.5, 1.5, 0.3);
+    -webkit-transform: scale3d(1.5, 1.5, 0.3);
+    -moz-transform: scale3d(1.5, 1.5, 0.3);
+}
+
+
+.transUp {
+    transition: .5s, color .10s;
+    -webkit-transition: .5s, color .10s;
+    -moz-transition: .5s, color .10s;
+}
+
+.transUp:hover {
+    transform: translatey(-20px);
+    -webkit-transform: translatey(-20px);
+    -moz-transform: translatey(-20px);
+}
