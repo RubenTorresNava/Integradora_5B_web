@@ -1,4 +1,6 @@
-Para hacer funcioanr el sistema, es importante hacer la instalación de las dependencias necesarias para el correcto funcionamiento del sistema. Para ello, se debe ejecutar el siguiente comando en la terminal:
+Inicialización del sistema a traves del comando en la terminal:
+    -npm start
+Para hacer funcionar el sistema, es importante hacer la instalación de las dependencias necesarias para el correcto funcionamiento del sistema. Para ello, se debe ejecutar el siguiente comando en la terminal:
     -npm install
 
 Ademas, hay dependencias que, en caso de que el sistema no funcione correctamente, se deben instalar de manera manual. Para ello, se debe ejecutar el siguiente comando en la terminal:
