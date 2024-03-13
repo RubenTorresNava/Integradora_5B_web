@@ -1,4 +1,3 @@
-Me leva la brga
 Para hacer funcioanr el sistema, es importante hacer la instalación de las dependencias necesarias para el correcto funcionamiento del sistema. Para ello, se debe ejecutar el siguiente comando en la terminal:
     -npm install
 
