@@ -40,11 +40,11 @@ const Login = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="usuario">Usuario</label>
-                        <input required type="text" id="usuario" className="form-control" placeholder="Ingrese su usuario" value={usuario} onChange={(e) => setUsuario(e.target.value)} required />
+                        <input required type="text" id="usuario" className="form-control" placeholder="Ingrese su usuario" value={usuario} onChange={(e) => setUsuario(e.target.value)} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Contraseña</label>
-                        <input required type="password" id="password" className="form-control" placeholder="Ingrese su contraseña" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                        <input required type="password" id="password" className="form-control" placeholder="Ingrese su contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </div>
                     <div className="text-center">
                         <button type="submit" className="btn btn-primary" disabled={!usuario || !password}>Iniciar sesión</button>
