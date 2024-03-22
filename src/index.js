@@ -1,15 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import 'bootstrap/scss/bootstrap.scss';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Swal from 'sweetalert2';
+import app from './app.js';
+import { conectarDB } from './config/db.js';
 
+const iniciarServidor = async () => {
+    try {
+        await conectarDB();
+        app.listen(7800);
+        console.log('7800 Supreme Deluxe corriendo en el puerto 7800. 7800 Supreme Deluxe, la mejor opción para su vida.');
+    } catch (error) {
+        console.log('Error al iniciar 7800 Supreme Deluxe, imposible...: ' + error);
+    }
+}
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+iniciarServidor();

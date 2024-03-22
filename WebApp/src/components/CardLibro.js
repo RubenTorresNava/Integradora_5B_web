@@ -1,4 +1,4 @@
-const CardLibro = ({ idLibro, titulo, autor, editorial, cantidad }) => {
+const CardLibro = ({ _id, cantidad, titulo, autor, editorial, clasificacion, apartado }) => {
     return (
         <div className="card">
             <div className="card-body">
@@ -6,10 +6,11 @@ const CardLibro = ({ idLibro, titulo, autor, editorial, cantidad }) => {
                 <p className="card-text">Autor: {autor}</p>
                 <p className="card-text">Editorial: {editorial}</p>
                 <p className="card-text">Cantidad: {cantidad}</p>
-                <input type="hidden" value={idLibro} />
+                <p className="card-text">Clasificación: {clasificacion}</p>
+                <p className="card-text">Apartado: {apartado}</p>
+                <input type="hidden" value={_id} />
             </div>
         </div>
     );
 }
-
 export default CardLibro;

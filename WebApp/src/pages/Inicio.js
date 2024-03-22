@@ -1,9 +1,47 @@
-import React from 'react';
+import {useEffect, useState} from 'react';
 import CardObjetos from '../../src/components/CardObjetos';
 import CardObjetos1 from '../../src/components/CardObjetos1';
 import * as FaIcons from 'react-icons/fa';
+import { contarLibros, contarAlumnos, contarPrestamos } from '../api/api';
+
+
 
 const Inicio = () => {
+    const [totalLibros, setTotalLibros] = useState(0);
+    const [totalAlumnos, setTotalAlumnos] = useState(0);
+    const [totalPrestamos, setTotalPrestamos] = useState(0);
+
+    useEffect(() => {
+        const fetchTotalLibros = async () => {
+            try {
+                const response = await contarLibros();
+                setTotalLibros(response.data.total);
+            } catch (error) {
+                console.error('Error al obtener el total de libros:', error);
+            }
+        };
+
+        const fetchTotalAlumnos = async () => {
+            try {
+                const response = await contarAlumnos();
+                setTotalAlumnos(response.data.total);
+            } catch (error) {
+                console.error('Error al obtener el total de alumnos:', error);
+            }
+        };
+        const fetchTotalPrestamos = async () => {
+            try {
+                const response = await contarPrestamos();
+                setTotalPrestamos(response.data.total);
+            }catch (error){
+                console.error('Error al obtener el total de prestamos:', error);
+            }
+        };
+
+        fetchTotalPrestamos();
+        fetchTotalLibros();
+        fetchTotalAlumnos();
+    }, []);
     return (
         <div className="contenedor">
             <h2 className="titulo">Vista General</h2>
@@ -13,7 +51,7 @@ const Inicio = () => {
                     <CardObjetos
                         icono={<FaIcons.FaBook size={50} />}
                         nombre="Lista y Catalogo"
-                        cantidad="10"
+                        cantidad={totalLibros}
                         ruta="/admin/lista"
                     />
                 </div>
@@ -21,7 +59,7 @@ const Inicio = () => {
                     <CardObjetos
                         icono={<FaIcons.FaCalendarAlt size={50} />}
                         nombre="Prestamos"
-                        cantidad="10"
+                        cantidad={totalPrestamos}
                         ruta="/admin/prestamos"
                     />
                 </div>
@@ -29,7 +67,7 @@ const Inicio = () => {
                     <CardObjetos
                         icono={<FaIcons.FaUsers size={50} />}
                         nombre="Alumnos"
-                        cantidad="10"
+                        cantidad={totalAlumnos}
                         ruta="/admin/alumnos"
                     />
                 </div>
