@@ -33,10 +33,10 @@ const Navbar = () => {
         <nav className="navbar navbar-expand-lg navbar-dark bg-light">
             <div className="container">
                 <Link to="/admin/inicio" className="navbar-brand grow">Sistema de bibloteca</Link>
-                <div className="d-flex">
+                {/* <div className="d-flex">
                     <input className="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" />
                     <button className="btn btn-outline-success" type="submit">Buscar</button>
-                </div>
+                </div> */}
                 <div>
                     <button onClick={handleLogout} className="btn btn-outline-danger">Cerrar sesion</button>
                 </div>

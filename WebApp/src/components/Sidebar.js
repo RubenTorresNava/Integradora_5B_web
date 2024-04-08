@@ -56,7 +56,9 @@ const Sidebar = () => {
                         <NavLink to="#" onClick={handleAlumnosClick} className="text-dark rounded py-2 w-100 d-inline-block px-3"><FaIcons.FaUsers className="me-2" /> Alumnos</NavLink>
                         <ul className={isAlumnsoOpen ? 'open' : ''}>
                             <li><NavLink to="/admin/alumnos" exact className="dropdown-item" activeClassName="active"><FaIcons.FaListAlt className="me-2" />Lista de Alumnos</NavLink></li>
-                            <li><NavLink to="/admin/agregar-alumno" exact className="dropdown-item" activeClassName="active"><FaIcons.FaUserPlus className="me-2" />Agregar Alumno</NavLink></li>
+                            {/* la pagina para agregar un alumno ahora solo esta oculta para poder ir a ella cuando se seleccione en el menu principal */}
+                            {/* de igual manera estara la modal */}
+                            {/* <li><NavLink to="/admin/agregar-alumno" exact className="dropdown-item" activeClassName="active"><FaIcons.FaUserPlus className="me-2" />Agregar Alumno</NavLink></li> */}
                         </ul>
                     </div>
                 </li>

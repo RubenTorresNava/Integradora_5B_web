@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const urlMongo = "mongodb://localhost:27017/integradora"
+    const urlMongo = "mongodb+srv://rubenbebe145rt:contraseña@integradora.gffe3xo.mongodb.net/biblioteca?retryWrites=true&w=majority&appName=Integradora";
 
 export const conectarDB = async () => {
     try {
