@@ -86,3 +86,41 @@ export const contarPrestamos = async (req, res) => {
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 }
+
+//devolver libro
+export const devolver = async (req, res) => {
+    try {
+        const { idPrestamo } = req.body;
+
+        // Buscar el préstamo por su ID
+        const prestamo = await Prestamo.findOne({ idPrestamo });
+
+        if (!prestamo) {
+            return res.status(404).json({ error: 'No se encontró el préstamo' });
+        }
+
+        // Verificar si el libro ya ha sido devuelto
+        if (prestamo.estado === 'Devuelto') {
+            return res.status(400).json({ error: 'El libro ya ha sido devuelto' });
+        }
+
+        // Actualizar el estado del préstamo a 'Devuelto'
+        const updatedPrestamo = await Prestamo.findOneAndUpdate(
+            { idPrestamo },
+            { estado: 'Devuelto' },
+            { new: true } // Para devolver el documento actualizado
+        );
+
+        // Incrementar la cantidad de libros disponibles en uno
+        await Libro.updateOne(
+            { _id: updatedPrestamo.libro },
+            { $inc: { cantidad: 1 } }
+        );
+
+        // Devolución exitosa
+        res.status(200).json({ message: 'Libro devuelto correctamente' });
+    } catch (error) {
+        console.error('Error al devolver el libro:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+}
