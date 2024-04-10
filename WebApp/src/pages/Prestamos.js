@@ -1,43 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CardPrestamo from '../../src/components/CardPrestamo';
+import { obtenerPrestamos } from '../api/api';
 
-const Prestamos= () => {
+const Prestamos = () => {
+    const [prestamos, setPrestamos] = useState([]);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchPrestamos = async () => {
+            try {
+                const response = await obtenerPrestamos();
+                const data = response.data;
+                console.log(data);
+                setPrestamos(data);
+            } catch (error) {
+                console.error('Error al obtener los prestamos. Inténtalo de nuevo más tarde.');
+                setError('Error al obtener los prestamos. Inténtalo de nuevo más tarde.');
+            }
+        };
+
+        fetchPrestamos();
+    }, []);
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
+
     return (
         <div className="contenedor">
             <h2 className="titulo">Lista General De Prestamos</h2>
-            <hr/>
+            <hr />
             <div className="row">
-                <div className="col-md-4">
-                    {/* formato de prueba */}
-                    <CardPrestamo
-                        idPrestamo="1"
-                        idLibro="1"
-                        fechaPrestamo="2021-08-01"
-                        fechaDevolucion="2021-08-15"
-                        estado="Prestado"
-                        titulo="El principito"
-                    />
-                </div>
-                <div className="col-md-4">
-                    <CardPrestamo
-                        idPrestamo="2"
-                        idLibro="2"
-                        fechaPrestamo="2021-08-01"
-                        fechaDevolucion="2021-08-15"
-                        estado="Prestado"
-                        titulo="El principito"
-                    />
-                </div>
-                <div className="col-md-4">
-                    <CardPrestamo
-                        idPrestamo="3"
-                        idLibro="3"
-                        fechaPrestamo="2021-08-01"
-                        fechaDevolucion="2021-08-15"
-                        estado="Prestado"
-                        titulo="El principito"
-                    />
-                </div>
+            {prestamos.prestamos && prestamos.prestamos.map((prestamo) => (
+    <div className="col-md-4" key={prestamo.idPrestamo}>
+        <CardPrestamo
+            idPrestamo={prestamo.idPrestamo}
+            idLibro={prestamo.libro}
+            fechaPrestamo={prestamo.fechaPrestamo}
+            fechaEntrega={prestamo.fechaEntrega}
+            estado={prestamo.estado}
+        />
+    </div>
+))}
+
             </div>
         </div>
     )
