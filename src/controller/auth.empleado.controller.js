@@ -1,4 +1,5 @@
 import { Empleado } from "../model/all.models.js";
+import jwt from 'jsonwebtoken';
 
 export const crear = async (req, res) => {
     try {
@@ -57,25 +58,20 @@ export const eliminarEmpleado = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
-      // Obtener los datos del usuario
-      const { usuario, password } = req.body;
-  
-      // Verificar si el usuario existe
-      const existing = await Empleado.findOne({ usuario });
-      // Verificar si la contraseña es correcta
+        const { usuario, password } = req.body;
+
+        const existing = await Empleado.findOne({ usuario });
+
         if (existing && existing.password === password) {
-            return res.status(200).json({ message: 'Bienvenido' });
-        }
-        else if(existing && existing.password !== password){
+            // Generar un token JWT
+            const token = jwt.sign({ usuario: existing.usuario }, 'secret_key', { expiresIn: '1h' });
+            return res.status(200).json({ message: 'Bienvenido', token });
+        } else if (existing && existing.password !== password) {
             return res.status(400).json({ message: 'Contraseña incorrecta' });
+        } else if (!existing) {
+            return res.status(400).json({ message: 'El usuario no existe' });
         }
-      if(existing){
-        return res.status(200).json({ message: 'Bienvenido' });
-      }
-      else if (!existing) {
-        return res.status(400).json({ message: 'El usuario no existe' });
-      }
     } catch (error) {
         res.status(500).json({ message: 'Error al iniciar sesión' });
-        }
     }
+}
