@@ -33,11 +33,11 @@ const Inicio = () => {
             try {
                 const response = await contarPrestamos();
                 setTotalPrestamos(response.data.total);
-            }catch (error){
+            }
+            catch (error) {
                 console.error('Error al obtener el total de prestamos:', error);
             }
         };
-
         fetchTotalPrestamos();
         fetchTotalLibros();
         fetchTotalAlumnos();

@@ -77,3 +77,12 @@ export const obtenerPrestamos = async (req, res) => {
     }
 }
 
+export const contarPrestamos = async (req, res) => {
+    try {
+        const total = await Prestamo.countDocuments();
+        res.json({ total });
+    } catch (error) {
+        console.error('Error al obtener todos los préstamos:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+}
