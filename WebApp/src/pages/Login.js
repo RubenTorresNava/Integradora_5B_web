@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { login } from '../api/api';
 import Swal from 'sweetalert2';
 
 const Login = () => {
@@ -9,24 +10,27 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (usuario === 'admin' && password === 'admin') {
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Bienvenido',
-                showConfirmButton: false,
-                timer: 1500
+
+        login({ usuario, password })
+            .then(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Bienvenido',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                setTimeout(() => {
+                    navigate('/admin/inicio');
+                }, 1500);
+            })
+            .catch((error) => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Usuario o contraseña incorrectos',
+                });
             });
-            setTimeout(() => {
-                navigate('/admin/inicio');
-            }, 1500);
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Usuario o contraseña incorrectos',
-            });
-        }
     };
 
     return (

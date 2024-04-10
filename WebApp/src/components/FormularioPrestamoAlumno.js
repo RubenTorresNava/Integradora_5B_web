@@ -3,20 +3,20 @@ import Swal from 'sweetalert2';
 
 const FormularioPrestamoAlumno = () => {
     const [datosAlumno, setDatosAlumno] = useState({
-        folio: '',
+        /* folio: '',
         nombre: '',
         apellidoPaterno: '',
         apellidoMaterno: '',
         cuatrimestre: '',
-        carrera: '',
+        carrera: '', */
         numeroControl: ''
     });
 
     const [datosLibro, setDatosLibro] = useState({
-        idLibro: '',
+        /* idLibro: '', */
         titulo: '',
-        autor: '',
-        editorial: ''
+       /*  autor: '',
+        editorial: '' */
     });
 
     const [datosPrestamo, setDatosPrestamo] = useState({

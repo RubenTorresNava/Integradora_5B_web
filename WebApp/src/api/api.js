@@ -9,3 +9,4 @@ export const contarAlumnos = async (alumnos) => axios.get(`${api}alumno/contarAl
 export const contarPrestamos = async (prestamos) => axios.get(`${api}prestamo/contarPrestamos`, prestamos);
 export const obtenerPrestamos = async (prestamos) => axios.get(`${api}prestamo/obtenerPrestamos`, prestamos);
 export const crearAlumno = async (alumno) => axios.post(`${api}alumno/crear`, alumno);
+export const login = async (credenciales) => axios.post(`${api}empleado/login`, credenciales);

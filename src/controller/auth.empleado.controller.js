@@ -54,3 +54,28 @@ export const eliminarEmpleado = async (req, res) => {
         res.status(500).json({ message: 'Error al eliminar el empleado' });
     }
 }
+
+export const login = async (req, res) => {
+    try {
+      // Obtener los datos del usuario
+      const { usuario, password } = req.body;
+  
+      // Verificar si el usuario existe
+      const existing = await Empleado.findOne({ usuario });
+      // Verificar si la contraseña es correcta
+        if (existing && existing.password === password) {
+            return res.status(200).json({ message: 'Bienvenido' });
+        }
+        else if(existing && existing.password !== password){
+            return res.status(400).json({ message: 'Contraseña incorrecta' });
+        }
+      if(existing){
+        return res.status(200).json({ message: 'Bienvenido' });
+      }
+      else if (!existing) {
+        return res.status(400).json({ message: 'El usuario no existe' });
+      }
+    } catch (error) {
+        res.status(500).json({ message: 'Error al iniciar sesión' });
+        }
+    }
