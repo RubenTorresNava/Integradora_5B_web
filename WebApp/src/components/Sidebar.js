@@ -33,35 +33,39 @@ const Sidebar = () => {
                 <li className="opc grow">
                     <NavLink to="/admin/inicio" exact className="text-dark rounded py-2 w-100 d-inline-block px-3" activeClassName="active"><FaIcons.FaHome className="me-2" />Inicio</NavLink>
                 </li>
-
-                <li>
-                    <div className="dropdown">
-                        <NavLink to="#" onClick={handleCatalogoClick} className="text-dark rounded py-2 w-100 d-inline-block px-3"><FaIcons.FaList className="me-2" /> Catalogo</NavLink>
-                        <ul className={isCatalogoOpen ? 'open' : ''}>
-                            <li><NavLink to="/admin/lista" exact className="dropdown-item" activeClassName="active"><FaIcons.FaListAlt className="me-2" />Lista de Libros</NavLink></li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <div className="dropdown">
-                        <NavLink to="#" onClick={handlePrestamosClick} className="text-dark rounded py-2 w-100 d-inline-block px-3"><FaIcons.FaCalendarAlt className="me-2" /> Prestamos</NavLink>
-                        <ul className={isPrestamosOpen ? 'open' : ''}>
-                            <li><NavLink to="/admin/prestamos" exact className="dropdown-item" activeClassName="active"><FaIcons.FaListAlt className="me-2" />Lista</NavLink></li>
-                            <li><NavLink to="/admin/prestamo-alumno" exact className="dropdown-item" activeClassName="active"><FaIcons.FaCalendarPlus className="me-2"/>Nuevo Prestamo</NavLink></li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <div className="dropdown">
-                        <NavLink to="#" onClick={handleAlumnosClick} className="text-dark rounded py-2 w-100 d-inline-block px-3"><FaIcons.FaUsers className="me-2" /> Alumnos</NavLink>
-                        <ul className={isAlumnsoOpen ? 'open' : ''}>
-                            <li><NavLink to="/admin/alumnos" exact className="dropdown-item" activeClassName="active"><FaIcons.FaListAlt className="me-2" />Lista de Alumnos</NavLink></li>
-                            {/* la pagina para agregar un alumno ahora solo esta oculta para poder ir a ella cuando se seleccione en el menu principal */}
-                            {/* de igual manera estara la modal */}
-                            {/* <li><NavLink to="/admin/agregar-alumno" exact className="dropdown-item" activeClassName="active"><FaIcons.FaUserPlus className="me-2" />Agregar Alumno</NavLink></li> */}
-                        </ul>
-                    </div>
-                </li>
+                <div class="opciones">
+                    <li>
+                        {/* <div className="dropdown"> */}
+                            {/* <NavLink to="#" onClick={handleCatalogoClick} className="text-dark rounded py-2 w-100 d-inline-block px-3"><FaIcons.FaList className="me-2" /> Catalogo</NavLink>
+                            <ul className={isCatalogoOpen ? 'open' : ''}>
+                                <li><NavLink to="/admin/lista" exact className="dropdown-item" activeClassName="active"><FaIcons.FaListAlt className="me-2" />Lista de Libros</NavLink></li>
+                            </ul> */}
+                            <NavLink to="/admin/lista" exact className="text-dark rounded py-2 w-100 d-inline-block px-3" activeClassName="active"><FaIcons.FaList className="me-2" /> Catalogo</NavLink>
+                        {/* </div> */}
+                    </li>
+                    <li>
+                        {/* <div className="dropdown"> */}
+                            {/* <NavLink to="#" onClick={handlePrestamosClick} className="text-dark rounded py-2 w-100 d-inline-block px-3"><FaIcons.FaCalendarAlt className="me-2" /> Prestamos</NavLink>
+                            <ul className={isPrestamosOpen ? 'open' : ''}>
+                                <li><NavLink to="/admin/prestamos" exact className="dropdown-item" activeClassName="active"><FaIcons.FaListAlt className="me-2" />Lista</NavLink></li>
+                                <li><NavLink to="/admin/prestamo-alumno" exact className="dropdown-item" activeClassName="active"><FaIcons.FaCalendarPlus className="me-2"/>Nuevo Prestamo</NavLink></li>
+                            </ul> */}
+                            <NavLink to="/admin/prestamos" exact className="text-dark rounded py-2 w-100 d-inline-block px-3" activeClassName="active"><FaIcons.FaCalendarAlt className="me-2" /> Prestamos</NavLink>
+                        {/* </div> */}
+                    </li>
+                    <li>
+                        {/* <div className="dropdown"> */}
+                            {/* <NavLink to="#" onClick={handleAlumnosClick} className="text-dark rounded py-2 w-100 d-inline-block px-3"><FaIcons.FaUsers className="me-2" /> Alumnos</NavLink>
+                            <ul className={isAlumnsoOpen ? 'open' : ''}>
+                                <li><NavLink to="/admin/alumnos" exact className="dropdown-item" activeClassName="active"><FaIcons.FaListAlt className="me-2" />Lista de Alumnos</NavLink></li>
+                                la pagina para agregar un alumno ahora solo esta oculta para poder ir a ella cuando se seleccione en el menu principal
+                                de igual manera estara la modal
+                                <li><NavLink to="/admin/agregar-alumno" exact className="dropdown-item" activeClassName="active"><FaIcons.FaUserPlus className="me-2" />Agregar Alumno</NavLink></li>
+                            </ul> */}
+                            <NavLink to="/admin/alumnos" exact className="text-dark rounded py-2 w-100 d-inline-block px-3" activeClassName="active"><FaIcons.FaUsers className="me-2" /> Alumnos</NavLink>
+                        {/* </div> */}
+                    </li>
+                </div>
             </ul>
         </div>
     )
