@@ -23,7 +23,15 @@ const FormularioPrestamoAlumno = () => {
                 titulo: datosAlumno.nombreLibro,
                 noCtrl: datosAlumno.numeroControl
             });
-            Swal.fire("Préstamo creado con éxito!!");
+            Swal.fire({
+                icon: 'success',
+                title: 'Prestamo agregado',
+                showConfirmButton: false,
+                timer: 1000
+            });
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
         } catch (error) {
             console.error('Error al crear el préstamo:', error);
             Swal.fire("Hubo un error al crear el préstamo. Por favor, inténtalo de nuevo más tarde.");

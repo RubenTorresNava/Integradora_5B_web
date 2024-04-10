@@ -35,7 +35,12 @@ const FormularioAlumnoAgregar = () => {
             await crearAlumno(alumnoParaEnviar);
 
             // Muestra una alerta de éxito
-            Swal.fire("Registro Exitoso!!");
+            Swal.fire({
+                icon: 'success',
+                title: 'Alumno agregado',
+                showConfirmButton: false,
+                timer: 1000
+            });
 
             // Limpia los campos del formulario
             setDatosAlumno({
@@ -45,6 +50,11 @@ const FormularioAlumnoAgregar = () => {
                 noCtrl: '',
                 carrera: ''
             });
+
+            //actuaiza la pagina despues de 2 segundos
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
         } catch (error) {
             // Si hay un error, muestra una alerta de error
             console.error('Error al agregar alumno:', error);
