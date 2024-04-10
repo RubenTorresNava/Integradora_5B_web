@@ -30,7 +30,7 @@ const Prestamos = () => {
     return (
         <div className="contenedor">
             <BotonModal1 />
-            <h2 className="titulo">Lista General De Prestamos</h2>
+            <h2 className="titulo"><b>Lista General De Prestamos</b></h2>
             <hr />
             <div className="row">
             {prestamos.prestamos && prestamos.prestamos.map((prestamo) => (

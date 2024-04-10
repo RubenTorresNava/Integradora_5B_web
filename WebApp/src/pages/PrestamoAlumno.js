@@ -4,7 +4,7 @@ import FormularioPrestamoAlumno from '../../src/components/FormularioPrestamoAlu
 const PrestamoAlumno= ()=>{
     return(
         <div className="contenedor">
-            <h2 className="titulo">Préstamo de libro</h2>
+            <h2 className="titulo"><b>Préstamo de libro</b></h2>
             <hr/>
             <FormularioPrestamoAlumno/>
         </div>

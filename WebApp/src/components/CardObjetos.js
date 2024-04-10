@@ -10,8 +10,8 @@ const CardObjetos = ({ icono, nombre, cantidad, ruta }) => {
                         <span>{icono}</span>
                     </div>
                     <div>
-                        <h5 className="card-title titulo">{nombre}</h5>
-                        <p className="card-text">Cantidad: {cantidad}</p>
+                        <h5 className="card-title titulo"><b>{nombre}</b></h5>
+                        <p className="card-text">Cantidad: <b>{cantidad}</b></p>
                         <NavLink to={ruta} className="btn btn-success">
                             Ir a {nombre}
                         </NavLink>

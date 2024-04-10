@@ -44,7 +44,7 @@ const Inicio = () => {
     }, []);
     return (
         <div className="contenedor">
-            <h2 className="titulo">Vista General</h2>
+            <h2 className="titulo"><b>Vista General</b></h2>
             <hr/>
             <div className="row">
                 <div className="col-md-4 mb-4">

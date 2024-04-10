@@ -48,7 +48,7 @@ const Lista = () => {
 
     return (
         <div className="contenedor">
-            <h2 className="titulo">Lista de Libros</h2>
+            <h2 className="titulo"><b>Lista de Libros</b></h2>
             <div className="d-flex justify-content-center mb-3">
                 <div className="col-md-5">
                     <div className="input-group">

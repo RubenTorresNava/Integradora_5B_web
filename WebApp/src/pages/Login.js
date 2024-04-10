@@ -39,7 +39,7 @@ const Login = () => {
                 <div className="text-center">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyWhythVZp0TMHYz3yUUxnwy4-b435Hphl28hQbVwKvUdQ-nPxZyRvmYJDYDkqUT83rAQ&usqp=CAU" alt="logo" />
                 </div>
-                <h2 className="titulo text-center">Inicio de sesión</h2>
+                <h2 className="titulo text-center"><b>Inicio de sesión</b></h2>
                 <hr/>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">

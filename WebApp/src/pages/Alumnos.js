@@ -50,7 +50,7 @@ const Alumnos = () => {
     return (
         <div className="contenedor">
             <BotonModal />
-            <h2 className="titulo">Alumnos</h2>
+            <h2 className="titulo"><b>Alumnos</b></h2>
             <div className="d-flex justify-content-center mb-3">
                 <div className="col-md-5">
                     <div className="input-group">

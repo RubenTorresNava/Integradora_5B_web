@@ -4,7 +4,7 @@ import FormularioAlumnoAgregar from '../../src/components/FormularioAlumnoAgrega
 const AlumnoAgregar = () => {
     return (
         <div className="contenedor">
-            <h2 className="titulo">Agregar Alumno</h2>
+            <h2 className="titulo"><b>Agregar Alumno</b></h2>
             <hr/>
             <FormularioAlumnoAgregar/>
         </div>
