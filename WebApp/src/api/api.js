@@ -11,3 +11,4 @@ export const obtenerPrestamos = async (prestamos) => axios.get(`${api}prestamo/o
 export const crearAlumno = async (alumno) => axios.post(`${api}alumno/crear`, alumno);
 export const login = async (credenciales) => axios.post(`${api}empleado/login`, credenciales);
 export const crearPrestamo = async (prestamo) => axios.post(`${api}prestamo/crear`, prestamo);
+export const devolverPrestamo = async (prestamo) => axios.put(`${api}prestamo/devolver`, prestamo);

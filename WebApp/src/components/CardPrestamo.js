@@ -1,20 +1,28 @@
 import Swal from 'sweetalert2';
+import { devolverPrestamo } from '../api/api';
+import React from 'react';
 
 const CardPrestamo = ({ idPrestamo, fechaPrestamo, fechaEntrega, estado }) => {
-    const handleClick = () => {
-
-        Swal.fire({
-            title: '¿Estás seguro de que deseas marcar este préstamo como terminado?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Sí, marcar como terminado',
-            cancelButtonText: 'Cancelar'
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-                // creo que aqui iria la logica para marcar el prestamo como "terminado"
-                Swal.fire('Préstamo marcado como terminado con éxito!!');
-            }
-        });
+    const handleClick = async () => {
+        try {
+            const response = await devolverPrestamo({ idPrestamo });
+            const data = response.data;
+            console.log(data);
+            Swal.fire({
+                icon: 'success',
+                title: 'Prestamo devuelto',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        } catch (error) {
+            console.error('Error al devolver el prestamo. Inténtalo de nuevo más tarde.');
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al devolver el prestamo. Inténtalo de nuevo más tarde.',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
     };
 
     return (
@@ -25,11 +33,10 @@ const CardPrestamo = ({ idPrestamo, fechaPrestamo, fechaEntrega, estado }) => {
                 <p className="card-text">Fecha de devolucion: <b>{fechaEntrega}</b></p>
                 <p className="card-text">Estado: <b>{estado}</b></p>
                 {/* boton verde */}
-                <button className="btn btn-success" onClick={handleClick}>Terminar prestamo</button>
+                <button className="btn btn-success" onClick={handleClick}>Terminar préstamo</button>
             </div>
         </div>
     );
 }
 
 export default CardPrestamo;
-
