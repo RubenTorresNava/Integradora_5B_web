@@ -4,20 +4,33 @@ import { FaPlus } from 'react-icons/fa';
 import FormularioAlumnoAgregar from './FormularioAlumnoAgregar';
 
 const BotonModal = () => {
+    // estados para abrir y cerrar el modal
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
 
     return (
+        // Boton para abrir el modal
         <>
+        {/* 
+        Boton para abrir el modal
+        */}
             <Button variant="primary" onClick={handleShow} style={styles.boton}>
                 <FaPlus />
             </Button>
-
+            {/*
+            Modal para agregar un alumno
+            */}
             <Modal show={show} onHide={handleClose}>
+                {/* 
+                
+                */}
                 <Modal.Header closeButton>
                     <Modal.Title>Agregar Alumno</Modal.Title>
                 </Modal.Header>
+                {/* 
+                Cuerpo del modal
+                */}
                 <Modal.Body>
                     <FormularioAlumnoAgregar />
                 </Modal.Body>
@@ -25,7 +38,7 @@ const BotonModal = () => {
         </>
     );
 }
-
+// estilos para el boton modal
 const styles = {
     boton: {  
         position: 'fixed',

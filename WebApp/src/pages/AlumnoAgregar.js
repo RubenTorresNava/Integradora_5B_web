@@ -1,3 +1,4 @@
+// pagina del formulario para agregar un alumno
 import React from 'react';
 import FormularioAlumnoAgregar from '../../src/components/FormularioAlumnoAgregar';
 

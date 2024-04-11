@@ -1,8 +1,10 @@
+// componente formulario para poder hacer la agregacion de un alumno nuevo
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import { crearAlumno } from '../api/api';
 
 const FormularioAlumnoAgregar = () => {
+    // estado para guardar los datos del alumno
     const [datosAlumno, setDatosAlumno] = useState({
         nombre: '',
         apellidoP: '',
@@ -10,15 +12,16 @@ const FormularioAlumnoAgregar = () => {
         noCtrl: '',
         carrera: ''
     });
-
+    // funcion para cambiar los valores de los campos
     const handleChange = (e) => {
         setDatosAlumno({
             ...datosAlumno,
             [e.target.name]: e.target.value
         });
     };
-
+    // funcion para enviar los datos del alumno
     const handleSubmit = async (e) => {
+        // evita que se recargue la pagina
         e.preventDefault();
 
         try {
@@ -41,7 +44,6 @@ const FormularioAlumnoAgregar = () => {
                 showConfirmButton: false,
                 timer: 1000
             });
-
             // Limpia los campos del formulario
             setDatosAlumno({
                 nombre: '',
@@ -50,7 +52,6 @@ const FormularioAlumnoAgregar = () => {
                 noCtrl: '',
                 carrera: ''
             });
-
             //actuaiza la pagina despues de 2 segundos
             setTimeout(() => {
                 window.location.reload();
@@ -63,9 +64,13 @@ const FormularioAlumnoAgregar = () => {
     };
 
     return (
+        // estructura del formulario
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-12 col-md-6">
+                    {/* 
+                    Titulo del formulario
+                    */}
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label htmlFor="numeroControl" className="form-label titulo">Numero de Control</label>
@@ -106,6 +111,9 @@ const FormularioAlumnoAgregar = () => {
                             </select>
                         </div>
                         <div className="d-grid">
+                            {/* 
+                            Boton para enviar los datos del formulario
+                            */}
                             <button type="submit" className="btn btn-success" disabled={!Object.values(datosAlumno).every(Boolean)}>Agregar</button>
                         </div>
                     </form>

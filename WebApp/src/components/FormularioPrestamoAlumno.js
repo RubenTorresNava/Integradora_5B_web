@@ -1,39 +1,49 @@
+// componente para crear un préstamo de un libro a un alumno
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import { crearPrestamo } from '../api/api';
 
 const FormularioPrestamoAlumno = () => {
+    // estado para guardar los datos del alumno
     const [datosAlumno, setDatosAlumno] = useState({
         numeroControl: '',
         nombreLibro: ''
     });
-
+    // funcion para cambiar los valores de los campos
     const handleChange = (e) => {
         setDatosAlumno({
             ...datosAlumno,
             [e.target.name]: e.target.value
         });
     };
-
+    // funcion para enviar los datos del alumno
     const handleSubmit = async (e) => {
+        // evita que se recargue la pagina
         e.preventDefault();
-        
+        // intenta crear un préstamo
         try {
+            // envía los datos del nuevo préstamo al servidor
             await crearPrestamo({
                 titulo: datosAlumno.nombreLibro,
                 noCtrl: datosAlumno.numeroControl
             });
+            // muestra una alerta de éxito
             Swal.fire({
                 icon: 'success',
                 title: 'Prestamo agregado',
                 showConfirmButton: false,
                 timer: 1900
             });
+            // limpia los campos del formulario
             setTimeout(() => {
                 window.location.reload();
             }, 1000);
-        } catch (error) {
+
+        } 
+        // si hay un error, muestra una alerta de error
+        catch (error) {
             console.error('Error al crear el préstamo:', error);
+            // muestra una alerta de error
             Swal.fire({
                 icon: 'error',
                 title: 'Error al crear el préstamo',
@@ -45,6 +55,7 @@ const FormularioPrestamoAlumno = () => {
     };
 
     return (
+        // estructura del formulario
         <form onSubmit={handleSubmit}>
             <div className="row">
                 <div className="col">
@@ -55,6 +66,9 @@ const FormularioPrestamoAlumno = () => {
                 </div>
             </div>
             <div className="d-grid gap-2">
+                {/* 
+                Boton para crear un préstamo
+                */}
                 <button type="submit" className="btn btn-success" disabled={!datosAlumno.numeroControl || !datosAlumno.nombreLibro}>Crear Préstamo</button>
             </div>
         </form>

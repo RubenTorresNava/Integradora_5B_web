@@ -4,20 +4,32 @@ import FormularioPrestamoAlumno from './FormularioPrestamoAlumno';
 import { FaPlus } from 'react-icons/fa';
 
 const BotonModal1 = () => {
+    // estados para abrir y cerrar el modal
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
 
     return (
         <>
+        {/* 
+        Boton para abrir el modal
+        */}
             <Button variant="primary" onClick={handleShow} style={styles.boton}>
                 <FaPlus />
             </Button>
-
+            {/* 
+            Modal para realizar un préstamo
+            */}
             <Modal show={show} onHide={handleClose}>
+                {/* 
+                Cabecera del modal
+                */}
                 <Modal.Header closeButton>
                     <Modal.Title>Realizar Préstamo</Modal.Title>
                 </Modal.Header>
+                {/* 
+                Cuerpo del modal
+                */}
                 <Modal.Body>
                     <FormularioPrestamoAlumno />
                 </Modal.Body>
@@ -27,6 +39,7 @@ const BotonModal1 = () => {
 }
 
 const styles = {
+    // estilos para el boton modal
     boton: {
         position: 'fixed',
         top: '10%',
