@@ -14,6 +14,10 @@ const CardPrestamo = ({ idPrestamo, fechaPrestamo, fechaEntrega, estado }) => {
                 showConfirmButton: false,
                 timer: 1500
             });
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+
         } catch (error) {
             console.error('Error al devolver el prestamo. Inténtalo de nuevo más tarde.');
             Swal.fire({
@@ -31,9 +35,9 @@ const CardPrestamo = ({ idPrestamo, fechaPrestamo, fechaEntrega, estado }) => {
                 <h5 className="card-title titulo"><b>{idPrestamo}</b></h5>
                 <p className="card-text">Fecha de prestamo: <b>{fechaPrestamo}</b></p>
                 <p className="card-text">Fecha de devolucion: <b>{fechaEntrega}</b></p>
-                <p className="card-text">Estado: <b>{estado}</b></p>
-                {/* boton verde */}
-                <button className="btn btn-success" onClick={handleClick}>Terminar préstamo</button>
+                {estado === 'Devuelto' ? <p className="card-text">Estado: <b>{estado}</b></p> : null}
+                <button className={`btn ${estado === 'Devuelto' ? 'btn-secondary' : 'btn-success'}`} onClick={handleClick} disabled={estado === 'Devuelto'}>{estado === 'Devuelto' ? 'Terminado' : 'Terminar préstamo'}</button>
+                
             </div>
         </div>
     );

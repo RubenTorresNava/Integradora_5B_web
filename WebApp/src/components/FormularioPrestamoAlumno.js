@@ -27,14 +27,20 @@ const FormularioPrestamoAlumno = () => {
                 icon: 'success',
                 title: 'Prestamo agregado',
                 showConfirmButton: false,
-                timer: 1000
+                timer: 1900
             });
             setTimeout(() => {
                 window.location.reload();
             }, 1000);
         } catch (error) {
             console.error('Error al crear el préstamo:', error);
-            Swal.fire("Hubo un error al crear el préstamo. Por favor, inténtalo de nuevo más tarde.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al crear el préstamo',
+                text: 'Por favor, inténtalo de nuevo más tarde.',
+                showConfirmButton: false,
+                timer: 1900
+            });
         }
     };
 

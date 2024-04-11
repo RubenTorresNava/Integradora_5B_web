@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { obtenerLibro } from '../api/api';
 import CardLibro from '../../src/components/CardLibro';
+import swal from 'sweetalert2';
 
 const Lista = () => {
     const [librosOriginales, setLibrosOriginales] = useState([]);
@@ -26,6 +27,13 @@ const Lista = () => {
             } catch (error) {
                 setError('Error al obtener los libros. Inténtalo de nuevo más tarde.');
                 setLoading(false);
+                swal.fire({
+                    icon: 'error',
+                    title: 'Error al obtener los libros',
+                    text: 'Inténtalo de nuevo más tarde.',
+                    showConfirmButton: false,
+                    timer: 1900
+                });
             }
         };
 

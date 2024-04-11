@@ -27,9 +27,9 @@ const BotonModal = () => {
 }
 
 const styles = {
-    boton: {
+    boton: {  
         position: 'fixed',
-        bottom: '20px',
+        top: '10%',
         right: '20px',
         borderRadius: '50%',
         width: '60px',
@@ -42,7 +42,8 @@ const styles = {
         backgroundColor: 'rgba(255, 255, 255, 0.8)',
         color: 'green',
         boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
-        border: '2px solid green',
+        border: '2px solid green'
+
     }
 }
 

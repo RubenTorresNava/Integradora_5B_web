@@ -29,7 +29,7 @@ const BotonModal1 = () => {
 const styles = {
     boton: {
         position: 'fixed',
-        bottom: '20px',
+        top: '10%',
         right: '20px',
         borderRadius: '50%',
         width: '60px',

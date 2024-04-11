@@ -75,14 +75,14 @@ const Inicio = () => {
                     <CardObjetos1
                         icono={<FaIcons.FaCalendarPlus size={50} />}
                         nombre="Nuevo Prestamo"
-                        ruta="/admin/prestamo-alumno"
+                        ruta="/admin/prestamos"
                     />
                 </div>
                 <div className="col-md-4 mb-4">
                     <CardObjetos1
                         icono={<FaIcons.FaUserPlus size={50} />}
                         nombre="Agregar Alumno"
-                        ruta="/admin/agregar-alumno"
+                        ruta="/admin/alumnos"
                     />
                 </div>
             </div>

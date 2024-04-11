@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { obtenerAlumnos } from '../api/api';
 import CardAlumno from '../../src/components/CardAlumno';
 import BotonModal from '../../src/components/BotonModal';
+import swal from 'sweetalert2';
 
 const Alumnos = () => {
     const [alumnosOriginales, setAlumnosOriginales] = useState([]);
@@ -27,6 +28,13 @@ const Alumnos = () => {
             } catch (error) {
                 setError('Error al obtener los alumnos. Inténtalo de nuevo más tarde.');
                 setLoading(false);
+                swal.fire({
+                    icon: 'error',
+                    title: 'Error al obtener los alumnos',
+                    text: 'Inténtalo de nuevo más tarde.',
+                    showConfirmButton: false,
+                    timer: 1900
+                });
             }
         };
 

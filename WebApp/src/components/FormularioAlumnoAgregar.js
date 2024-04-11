@@ -85,7 +85,25 @@ const FormularioAlumnoAgregar = () => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="carrera" className="form-label titulo">Carrera</label>
-                            <input required type="text" className="form-control" id="carrera" name="carrera" onChange={handleChange} />
+                            <select required className="form-select" id="carrera" name="carrera" onChange={handleChange}>
+                                <option value="">Selecciona una carrera</option>
+                                <option value="Desarrollo de Negocios Área Mercadotecnia">Desarrollo de Negocios Área Mercadotecnia</option>
+                                <option value="Diseño Digital Área Animación">Diseño Digital Área Animación</option>
+                                <option value="Energías Renovables Área Calidad y Ahorro De Energía">Energías Renovables Área Calidad y Ahorro De Energía</option>
+                                <option value="Lengua Inglesa">Lengua Inglesa</option>
+                                <option value="Mantenimiento Área Industrial">Mantenimiento Área Industrial</option>
+                                <option value="Mecatrónica Area Sistemas de Manufactura Flexible">Mecatrónica Area Sistemas de Manufactura Flexible</option>
+                                <option value="Operaciones Comerciales Internacionales Área Clasificación Arancelaria y Despacho Aduanero">Operaciones Comerciales Internacionales Área Clasificación Arancelaria y Despacho Aduanero</option>
+                                <option value="Procesos Industriales Área Manufactura">Procesos Industriales Área Manufactura</option>
+                                <option value="Tecnologías de la Información">Tecnologías de la Información</option>
+                                <option value="Ing en desarrollo y gestión de software">Ing en desarrollo y gestión de software</option>                               
+                                <option value="Ing en energías renovables">Ing en energías renovables</option>
+                                <option value="Ing en logística internacional">Ing en logística internacional</option>
+                                <option value="Ing en mantenimiento industrial">Ing en mantenimiento industrial</option>
+                                <option value="Ing en mecatrónica">Ing en mecatrónica</option>
+                                <option value="Lic en gestión institucional, educativa y curricular">Lic en gestión institucional, educativa y curricular</option>
+                                <option value="Lic en innovación de negocios y mercadotecnia">Lic en innovación de negocios y mercadotecnia</option>
+                            </select>
                         </div>
                         <div className="d-grid">
                             <button type="submit" className="btn btn-success" disabled={!Object.values(datosAlumno).every(Boolean)}>Agregar</button>
