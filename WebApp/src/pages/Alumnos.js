@@ -173,6 +173,7 @@ const Alumnos = () => {
                                     apellidoP={alumno.apellidoP}
                                     apellidoM={alumno.apellidoM}
                                     carrera={alumno.carrera}
+                                    telefono={alumno.telefono}
                                 />
                             </div>
                         ))}

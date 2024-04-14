@@ -10,7 +10,8 @@ const FormularioAlumnoAgregar = () => {
         apellidoP: '',
         apellidoM: '',
         noCtrl: '',
-        carrera: ''
+        carrera: '',
+        telefono: ''
     });
     // funcion para cambiar los valores de los campos
     const handleChange = (e) => {
@@ -31,7 +32,8 @@ const FormularioAlumnoAgregar = () => {
                 apellidoP: datosAlumno.apellidoP,
                 apellidoM: datosAlumno.apellidoM,
                 nombre: datosAlumno.nombre,
-                carrera: datosAlumno.carrera
+                carrera: datosAlumno.carrera,
+                telefono: datosAlumno.telefono
             };
 
             // Envía los datos del nuevo alumno al servidor
@@ -50,7 +52,8 @@ const FormularioAlumnoAgregar = () => {
                 apellidoP: '',
                 apellidoM: '',
                 noCtrl: '',
-                carrera: ''
+                carrera: '',
+                telefono: ''
             });
             //actuaiza la pagina despues de 2 segundos
             setTimeout(() => {
@@ -87,6 +90,10 @@ const FormularioAlumnoAgregar = () => {
                         <div className="mb-3">
                             <label htmlFor="apellidoMaterno" className="form-label titulo">Apellido Materno</label>
                             <input required type="text" className="form-control" id="apellidoMaterno" name="apellidoM" onChange={handleChange} />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="telefono" className="form-label titulo">Telefono</label>
+                            <input required type="number" className="form-control" id="telefono" name="telefono" onChange={handleChange} />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="carrera" className="form-label titulo">Carrera</label>
