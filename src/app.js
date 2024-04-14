@@ -6,6 +6,7 @@ import empleadoRoutes from './routes/auth.empleado.routes.js';
 import libroRoutes from './routes/auth.libro.routes.js';
 import visitaRoutes from './routes/auth.visita.routes.js';
 import prestamoRoutes from './routes/auth.prestamo.routes.js';
+import cadenaRoutes from './routes/auth.cadena.routes.js';
 
 const app = express();
 app.use(corse());
@@ -21,6 +22,7 @@ app.use('/api/empleado', empleadoRoutes);
 app.use('/api/libro', libroRoutes);
 app.use('/api/visita', visitaRoutes);
 app.use('/api/prestamo', prestamoRoutes);
+app.use('/api/cadena', cadenaRoutes);
 
 
 export default app;

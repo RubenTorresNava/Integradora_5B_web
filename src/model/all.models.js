@@ -80,6 +80,10 @@ const empleadoSchema = new mongoose.Schema({
     }
 });
 
+const cadenaSchema = new mongoose.Schema({
+    cadena: String
+  });
+
 const PrestamoSchema = new mongoose.Schema({
     idPrestamo: { type: Number, required: true },
     libro: { type: mongoose.Schema.Types.ObjectId, ref: 'Libro', required: true },
@@ -116,6 +120,7 @@ export const Alumno = mongoose.model("Alumno", alumnoSchema);
 export const Libro = mongoose.model("Libro", libroSchema);
 export const Visitas = mongoose.model("Visitas", visitasSchema);
 export const Empleado = mongoose.model("Empleado", empleadoSchema);
+export const Cadena = mongoose.model("Cadena", cadenaSchema);
 export const Prestamo = mongoose.model("Prestamo", PrestamoSchema);
 /* export const PrestamoH = mongoose.model("PrestamoH", PrestamoHora);
 export const PrestamoA = mongoose.model("PrestamoA", PrestamoAlumno);

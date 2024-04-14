@@ -76,3 +76,13 @@ export const contarLibro = async (req, res) => {
         res.status(500).json({ message: "Error en el servidor" });
     }
 }
+
+export const obtenerLibroClasificacion = async (req, res) => {
+    try {
+        const clasificacion = req.body.clasificacion;
+        const libros = await Libro.find({ clasificacion });
+        res.status(200).json(libros);
+    } catch (error) {
+        res.status(500).json({ message: 'Error al obtener los libros' });
+    }
+}
