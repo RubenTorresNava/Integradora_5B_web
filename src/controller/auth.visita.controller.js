@@ -3,14 +3,14 @@ import { Visitas } from "../model/all.models.js";
 export const crear = async (req, res) => {
     try {
 
-        const { idVisita, idHuella, motivo, fechaVisita } = req.body;
+        const { idVisita,  motivo, fechaVisita } = req.body;
 
         const visitaExiste = await Visitas.findOne({ idVisita });
         if (visitaExiste) {
             return res.status(400).json({ message: 'La visita ya existe' });
         }
 
-        const nuevaVisita = new Visitas({ idVisita, idHuella, motivo, fechaVisita });
+        const nuevaVisita = new Visitas({ idVisita, motivo, fechaVisita });
         await nuevaVisita.save();
         res.status(201).json({ message: 'Visita creada' });
 
