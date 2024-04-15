@@ -28,10 +28,7 @@ const alumnoSchema = new mongoose.Schema({
     },
     correo:{
         type: String,
-    },
-    correo:{
-        type: String,
-    },
+    }
 });
 
  const libroSchema = new mongoose.Schema({

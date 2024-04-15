@@ -2,7 +2,7 @@ import { Alumno } from '../model/all.models.js';
 
 export const crear = async (req, res) => {
     try {
-        const { noCtrl, nombre, apellidoP, apellidoM, carrera, CURP } = req.body;
+        const { noCtrl, nombre, apellidoP, apellidoM, carrera, telefono, correo } = req.body;
 
         // Validar si el alumno ya existe
         const alumnoExiste = await Alumno.findOne({ noCtrl });
@@ -11,7 +11,7 @@ export const crear = async (req, res) => {
         }
 
         // Crear un nuevo alumno
-        const nuevoAlumno = new Alumno({ noCtrl, nombre, apellidoP, apellidoM, carrera, CURP });
+        const nuevoAlumno = new Alumno({ noCtrl, nombre, apellidoP, apellidoM, carrera, telefono, correo});
         await nuevoAlumno.save();
         
         // Respuesta exitosa
