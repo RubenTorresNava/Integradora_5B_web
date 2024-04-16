@@ -32,6 +32,11 @@ const alumnoSchema = new mongoose.Schema({
 });
 
  const libroSchema = new mongoose.Schema({
+    idLibro: {
+        type: String,
+        required: true,
+        unique: true
+    },
     cantidad: {
         type: Number,
         required: true
@@ -60,9 +65,36 @@ const alumnoSchema = new mongoose.Schema({
 });
 
 const visitasSchema = new mongoose.Schema({
-    idVisita: { type: Number, required: true },
+    idVisita: { type: Number, required: true, unique: true, autoimcrement: true},
     motivo: { type: String, required: true },
-    fechaVisita: { type: Date, required: true }
+    fechaVisita: { type: String, required: true },
+    horaEntrada: { type: String, required: true },
+    noCtrl: {
+        type: String,
+        required: true
+    },
+    nombre: {
+        type: String,
+        required: true
+    },
+    apellidoP: {
+        type: String,
+        required: true
+    },
+    apellidoM: {
+        type: String,
+        required: true
+    },
+    carrera: {
+        type: String,
+        required: true
+    },
+    telefono: {
+        type: String,
+    },
+    correo:{
+        type: String,
+    }
 });
 
 const empleadoSchema = new mongoose.Schema({
@@ -82,7 +114,7 @@ const empleadoSchema = new mongoose.Schema({
 });
 
 const cadenaSchema = new mongoose.Schema({
-    cadena: String
+    cadena: String,
 });
 
 const cadenaAlumnoSchema = new mongoose.Schema({
@@ -93,6 +125,7 @@ const PrestamoSchema = new mongoose.Schema({
     idPrestamo: { type: Number, required: true },
     libro: { type: mongoose.Schema.Types.ObjectId, ref: 'Libro', required: true },
     alumno: { type: mongoose.Schema.Types.ObjectId, ref: 'Alumno', required: true },
+    cadena: { type: mongoose.Schema.Types.ObjectId, ref: 'Cadena', required: true },
     fechaPrestamo: { type: Date, required: true },
     fechaEntrega: { type: Date, required: true },
     estado: { type: String, required: true }

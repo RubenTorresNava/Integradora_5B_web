@@ -1,56 +1,28 @@
 import { Visitas } from "../model/all.models.js";
 
+//crear visita
 export const crear = async (req, res) => {
-    try {
+    const nuevoDocumento = new Visitas(req.body);
 
-        const { idVisita,  motivo, fechaVisita } = req.body;
+    // Guardar el documento en la base de datos
+    nuevoDocumento.save()
+    .then(doc => {
+        console.log(doc);
+    })
+    .catch(err => {
+        console.error(err);
+    });
+  };
 
-        const visitaExiste = await Visitas.findOne({ idVisita });
-        if (visitaExiste) {
-            return res.status(400).json({ message: 'La visita ya existe' });
-        }
-
-        const nuevaVisita = new Visitas({ idVisita, motivo, fechaVisita });
-        await nuevaVisita.save();
-        res.status(201).json({ message: 'Visita creada' });
-
-    } catch (error) {
-        res.status(500).json({ message: 'Error al crear la visita' });
-    }
-}
-
+//obtener visitas
 export const obtenerVisitas = async (req, res) => {
-    try {
-        const visitas = await Visitas.find();
-        res.status(200).json(visitas);
-    } catch (error) {
-        res.status(500).json({ message: 'Error al obtener las visitas' });
-    }
-}
-
-export const obtenerVisita = async (req, res) => {
-    try {
-        const visita = await Visitas.findById(req.params.id);
-        res.status(200).json(visita);
-    } catch (error) {
-        res.status(500).json({ message: 'Error al obtener la visita' });
-    }
-}
-
-export const actualizarVisita = async (req, res) => {
-    try {
-        await Visitas.findByIdAndUpdate(req.params.id, req.body);
-        res.status(200).json({ message: 'Visita actualizada' });
-    } catch (error) {
-        res.status(500).json({ message: 'Error al actualizar la visita' });
-    }
-}
-
-export const eliminarVisita = async (req, res) => {
-    try {
-        await Visitas.findByIdAndDelete(req.params.id);
-        res.status(200).json({ message: 'Visita eliminada' });
-    } catch (error) {
-        res.status(500).json({ message: 'Error al eliminar la visita' });
-    }
-}
+    // Obtener todos los documentos de la base de datos
+    Visitas.find({}, (err, visitas) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send('Error interno del servidor');
+      } else {
+        res.status(200).send(visitas);
+      }
+    });
+  };
