@@ -2,17 +2,16 @@ import { Visitas } from "../model/all.models.js";
 
 //crear visita
 export const crear = async (req, res) => {
-    const nuevoDocumento = new Visitas(req.body);
+    const documento = req.body;
 
-    // Guardar el documento en la base de datos
-    nuevoDocumento.save()
-    .then(doc => {
-        console.log(doc);
-    })
-    .catch(err => {
+    try {
+        await Visitas.create(documento);
+        res.status(201).send('Documento guardado correctamente');
+    } catch (err) {
         console.error(err);
-    });
-  };
+        res.status(500).send('Error interno del servidor');
+    }
+};
 
 //obtener visitas
 export const obtenerVisitas = async (req, res) => {
