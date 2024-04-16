@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../api/api';
+import { AuthContext } from '../context/AuthContext';
 import Swal from 'sweetalert2';
 
 const Login = () => {
     const [usuario, setUsuario] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const { setAuth } = useContext(AuthContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         login({ usuario, password })
-            .then(() => {
+            .then((response) => {
+                localStorage.setItem('elToken', response.data.token);
+                setAuth(true);
                 Swal.fire({
                     position: 'center',
                     icon: 'success',

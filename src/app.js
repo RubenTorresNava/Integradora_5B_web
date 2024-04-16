@@ -19,6 +19,7 @@ app.get('/', (req, res) => {
     res.send('Bienvenidos a La Rest API 7800 Supreme Deluxe, la mejor opción para su vida.');
 });
 
+
 app.use('/api/alumno', alumnoRoutes);
 app.use('/api/empleado', empleadoRoutes);
 app.use('/api/libro', libroRoutes);

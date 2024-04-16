@@ -1,14 +1,16 @@
 // componente de la barra de navegacion 
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../context/AuthContext';
 
 const Navbar = () => {
     // hook para navegar entre las rutas
     const navigate = useNavigate();
+    const setAuth = useContext(AuthContext).setAuth;
     // funcion para cerrar sesion
     const handleLogout = () => {
-        // muestra una alerta de confirmacion
+
         Swal.fire({
             title: "Estas segur@?",
             text: "Se cerrará sesión del sistema.",
@@ -20,6 +22,8 @@ const Navbar = () => {
         }).then((result) => {
             // si se confirma la salida, muestra una alerta de exito y redirige a la pagina de inicio
             if (result.isConfirmed) {
+                localStorage.removeItem('elToken');
+                setAuth(false);
                 Swal.fire({
                     title: "Sesión cerrada",
                     text: "Has cerrado sesión exitosamente.",
@@ -40,7 +44,7 @@ const Navbar = () => {
                 {/* 
                 Link a la pagina de inicio con el nombre del sistema
                 */}
-                <Link to="/admin/inicio" className="navbar-brand grow"><b>Sistema de bibloteca</b></Link>
+                <Link to="/admin/inicio" className="navbar-brand grow"><b>Sistema de biblioteca</b></Link>
                 <div>
                     {/*
                     Boton para cerrar sesion

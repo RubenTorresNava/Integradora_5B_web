@@ -10,10 +10,12 @@ import Alumnos from '../src/pages/Alumnos';
 import PrestamoAlumno from '../src/pages/PrestamoAlumno';
 import PrestamoAlumnoTiempo from '../src/pages/PrestamoAlumnoTiempo';
 import AlumnoAgregar from '../src/pages/AlumnoAgregar';
+import { useEffect, useState } from 'react';
 // estilos
 import './App.scss';
 
 function App() {
+
   return (
     <Router>
       
