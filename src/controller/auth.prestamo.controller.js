@@ -3,64 +3,54 @@ import { ObjectId } from 'mongodb';
 
 export const crear = async (req, res) => {
     try {
-        const { titulo, noCtrl } = req.body;
+        const { idLibro, noControl } = req.body;
 
-        // Encuentra el documento del libro
-        const libroEncontrado = await Libro.findOne({ titulo });
+        // Buscar el libro por su identificador personalizado
+        const libro = await Libro.findOne({ idLibro: idLibro });
 
-        // Encuentra el documento del alumno
-        const alumnoEncontrado = await Alumno.findOne({ noCtrl });
-
-        if (libroEncontrado && alumnoEncontrado) {
-            // Verificar si hay suficientes copias disponibles del libro
-            if (libroEncontrado.cantidad > 0) {
-                // Si se encontraron el libro y el alumno y hay suficientes copias disponibles, procede con el préstamo
-                const idLibro = libroEncontrado._id;
-                const idAlumno = alumnoEncontrado._id;
-
-                // Obtener la fecha actual
-                const fechaActual = new Date();
-
-                // Calcular la fecha de entrega sumando 14 días (por ejemplo)
-                const diasPrestamo = 14;
-                const fechaEntrega = new Date(fechaActual.getTime() + diasPrestamo * 24 * 60 * 60 * 1000); // Sumar días en milisegundos
-
-                // Reducir la cantidad de libros disponibles en uno
-                libroEncontrado.cantidad--;
-
-                // Guardar el libro actualizado en la base de datos
-                await libroEncontrado.save();
-
-                // Crear el nuevo documento de préstamo
-                const nuevoPrestamo = new Prestamo({
-                    idPrestamo: Math.floor(Math.random() * 1000),
-                    libro: idLibro,
-                    alumno: idAlumno,
-                    fechaPrestamo: fechaActual,
-                    fechaEntrega: fechaEntrega,
-                    estado: 'Prestado'
-                });
-
-                // Inserta el nuevo documento de préstamo en la colección de préstamos
-                await nuevoPrestamo.save();
-                console.log('Prestamo registrado correctamente.');
-                res.status(200).json({ message: 'Prestamo registrado correctamente' });
-            } else {
-                // Si no hay suficientes copias disponibles del libro, devuelve un error
-                console.log('No hay suficientes copias disponibles del libro.');
-                res.status(400).json({ error: 'No hay suficientes copias disponibles del libro' });
-            }
-        } else {
-            // Si no se encontró el libro o el alumno, devuelve un error
-            console.log('No se encontró el libro o el alumno.');
-            res.status(404).json({ error: 'No se encontró el libro o el alumno' });
+        if (!libro) {
+            return res.status(404).json({ error: 'No se encontró el libro' });
         }
+
+        // Verificar si el libro está disponible
+        if (libro.cantidad === 0) {
+            return res.status(400).json({ error: 'No hay libros disponibles' });
+        }
+
+        // Verificar si el alumno existe
+        const alumno = await Alumno.findOne({ noControl });
+
+        if (!alumno) {
+            return res.status(404).json({ error: 'No se encontró el alumno' });
+        }
+
+        // Crear un nuevo préstamo
+        const prestamo = new Prestamo({
+            idPrestamo: Math.floor(Math.random() * 100),
+            libro: libro._id,
+            alumno: alumno._id,
+            fechaPrestamo: new Date(),
+            fechaEntrega: new Date(),
+            estado: 'Prestado'
+        });
+
+        // Guardar el préstamo en la base de datos
+        await prestamo.save();
+
+        // Decrementar la cantidad de libros disponibles en uno
+        await Libro.updateOne(
+            { _id: libro._id },
+            { $inc: { cantidad: -1 } }
+        );
+
+        // Préstamo exitoso
+        res.status(201).json({ message: 'Libro prestado correctamente' });
     } catch (error) {
-        // Si ocurre un error, devuelve un error interno del servidor
-        console.error('Error al crear el préstamo:', error);
+        console.error('Error al prestar el libro:', error);
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 }
+
 
 
 export const obtenerPrestamos = async (req, res) => {
@@ -116,6 +106,9 @@ export const devolver = async (req, res) => {
             { _id: updatedPrestamo.libro },
             { $inc: { cantidad: 1 } }
         );
+
+        //eliminar el prestamo
+        await Prestamo.deleteOne({ idPrestamo });
 
         // Devolución exitosa
         res.status(200).json({ message: 'Libro devuelto correctamente' });

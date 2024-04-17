@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const alumnoSchema = new mongoose.Schema({
     noCtrl: {
-        type: Number,
+        type: String,
         unique: true,
         required: true
     },
@@ -125,7 +125,6 @@ const PrestamoSchema = new mongoose.Schema({
     idPrestamo: { type: Number, required: true },
     libro: { type: mongoose.Schema.Types.ObjectId, ref: 'Libro', required: true },
     alumno: { type: mongoose.Schema.Types.ObjectId, ref: 'Alumno', required: true },
-    cadena: { type: mongoose.Schema.Types.ObjectId, ref: 'Cadena', required: true },
     fechaPrestamo: { type: Date, required: true },
     fechaEntrega: { type: Date, required: true },
     estado: { type: String, required: true }

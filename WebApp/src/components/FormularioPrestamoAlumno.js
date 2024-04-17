@@ -7,7 +7,7 @@ const FormularioPrestamoAlumno = () => {
     // estado para guardar los datos del alumno
     const [datosAlumno, setDatosAlumno] = useState({
         numeroControl: '',
-        nombreLibro: ''
+        idLibro: ''
     });
     // funcion para cambiar los valores de los campos
     const handleChange = (e) => {
@@ -24,7 +24,7 @@ const FormularioPrestamoAlumno = () => {
         try {
             // envía los datos del nuevo préstamo al servidor
             await crearPrestamo({
-                titulo: datosAlumno.nombreLibro,
+                idLibro: datosAlumno.idLibro,
                 noCtrl: datosAlumno.numeroControl
             });
             // muestra una alerta de éxito
@@ -62,14 +62,14 @@ const FormularioPrestamoAlumno = () => {
                     <input required type="text" name="numeroControl" className="form-control mb-3" placeholder="Número de Control" value={datosAlumno.numeroControl} onChange={handleChange} />
                 </div>
                 <div className="col">
-                    <input required type="text" name="nombreLibro" className="form-control mb-3" placeholder="Nombre del Libro" value={datosAlumno.nombreLibro} onChange={handleChange} />
+                    <input required type="text" name="idLibro" className="form-control mb-3" placeholder="identificador del libro" value={datosAlumno.idLibro} onChange={handleChange} />
                 </div>
             </div>
             <div className="d-grid gap-2">
                 {/* 
                 Boton para crear un préstamo
                 */}
-                <button type="submit" className="btn btn-success" disabled={!datosAlumno.numeroControl || !datosAlumno.nombreLibro}>Crear Préstamo</button>
+                <button type="submit" className="btn btn-success" disabled={!datosAlumno.numeroControl || !datosAlumno.idLibro}>Crear Préstamo</button>
             </div>
         </form>
     );
