@@ -3,7 +3,7 @@ import { ObjectId } from 'mongodb';
 
 export const crear = async (req, res) => {
     try {
-        const { idLibro, noControl } = req.body;
+        const { idLibro, noCtrl } = req.body;
 
         // Buscar el libro por su identificador personalizado
         const libro = await Libro.findOne({ idLibro: idLibro });
@@ -18,10 +18,15 @@ export const crear = async (req, res) => {
         }
 
         // Verificar si el alumno existe
-        const alumno = await Alumno.findOne({ noControl });
+        const alumno = await Alumno.findOne({ noCtrl});
 
         if (!alumno) {
             return res.status(404).json({ error: 'No se encontró el alumno' });
+        }
+
+        //Verificar si el alumno tiene prestamos pendientes
+         if (await Prestamo.findOne({ alumno: alumno._id, estado: 'Prestado' })) {
+            return res.status(400).json({ error: 'El alumno tiene un préstamo pendiente' });
         }
 
         // Crear un nuevo préstamo
@@ -42,6 +47,10 @@ export const crear = async (req, res) => {
             { _id: libro._id },
             { $inc: { cantidad: -1 } }
         );
+
+        //imprimir los datos del alumno que solicito el prestamo
+
+
 
         // Préstamo exitoso
         res.status(201).json({ message: 'Libro prestado correctamente' });
