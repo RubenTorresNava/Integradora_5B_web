@@ -28,46 +28,49 @@ const BotonEditarAlumnoModal = ({
   const handleClose = () => setShow(false);
   // funcion para abrir el modal
   const handleShow = () => setShow(true);
-  // funcion para editar el alumno
+
+  // editar el alumno
   const handleEdit = async () => {
     try {
-      // se envia la informacion del alumno para editarlo
+      // se envia la informacion del alumno a editar
       const response = await actualizarAlumno({
         idAlumno,
-        newNoCtrl,
-        newNombre,
-        newApellidoP,
-        newApellidoM,
-        newCarrera,
-        newTelefono,
-        newCorreo,
+        noCtrl: newNoCtrl,
+        nombre: newNombre,
+        apellidoP: newApellidoP,
+        apellidoM: newApellidoM,
+        carrera: newCarrera,
+        telefono: newTelefono,
+        correo: newCorreo,
       });
       const data = response.data;
       console.log(data);
       // se muestra un mensaje de exito con sweetalert
       Swal.fire({
         icon: "success",
-        title: "Alumno editado con exito",
+        title: "Alumno actualizado con exito",
         showConfirmButton: false,
         timer: 1500,
       });
+      // se cierra el modal
+      handleClose();
       // se recarga la pagina
       window.location.reload();
     } catch (error) {
       // se muestra un mensaje de error con sweetalert
-      console.error("Error al editar el alumno. Inténtalo de nuevo más tarde.");
+      console.error("Error al actualizar el alumno. Inténtalo de nuevo más tarde.");
       Swal.fire({
         icon: "error",
-        title: "Error al editar el alumno. Inténtalo de nuevo más tarde.",
+        title: "Error al actualizar el alumno. Inténtalo de nuevo más tarde.",
         showConfirmButton: false,
         timer: 1500,
       });
     }
-  };
-  // funcion para eliminar el alumno
+  }
+
+  // eliminar el alumno por su noCtrl 
   const handleDelete = async () => {
     try {
-      // hacer la eliminacion pero con confirmacion con sweetalert
       const result = await Swal.fire({
         title: "¿Estás seguro de eliminar el alumno?",
         text: "No podrás revertir esto!",
@@ -78,27 +81,26 @@ const BotonEditarAlumnoModal = ({
         confirmButtonText: "Si, eliminar",
         cancelButtonText: "Cancelar",
       });
-      // si se confirma la eliminacion
-      if (result.isConfirmed) {
-        // se envia el id del alumno para eliminarlo
-        const response = await eliminarAlumno({ idAlumno });
-        const data = response.data;
-        console.log(data);
-        // se muestra un mensaje de exito con sweetalert
-        Swal.fire({
-          icon: "success",
-          title: "Alumno eliminado con exito",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        // se recarga la pagina
-        window.location.reload();
-      }
+      if(result.isConfirmed){
+      // se envia el noCtrl del alumno a eliminar
+      const response = await eliminarAlumno(noCtrl);
+      const data = response.data;
+      console.log(data);
+      // se muestra un mensaje de exito con sweetalert
+      Swal.fire({
+        icon: "success",
+        title: "Alumno eliminado con exito",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      // se cierra el modal
+      handleClose();
+      // se recarga la pagina
+      window.location.reload();
+    }
     } catch (error) {
       // se muestra un mensaje de error con sweetalert
-      console.error(
-        "Error al eliminar el alumno. Inténtalo de nuevo más tarde."
-      );
+      console.error("Error al eliminar el alumno. Inténtalo de nuevo más tarde.");
       Swal.fire({
         icon: "error",
         title: "Error al eliminar el alumno. Inténtalo de nuevo más tarde.",
@@ -106,7 +108,8 @@ const BotonEditarAlumnoModal = ({
         timer: 1500,
       });
     }
-  };
+  }
+  
   // estructura del boton
   return (
     <>

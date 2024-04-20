@@ -33,42 +33,26 @@ export const obtenerAlumnos = async (req, res) => {
 
 export const obtenerAlumno = async (req, res) => {
     try {
-        const alumno = await Alumno.findById(req.params.id);
+        const {noCtrl} = req.params;
+        const alumno = await Alumno.findOne({ noCtrl });
         res.status(200).json(alumno);
     } catch (error) {
         res.status(500).json({ message: 'Error al obtener el alumno' });
     }
 }
 
-// export const actualizarAlumno = async (req, res) => {
-//     try {
-//         await Alumno.findByIdAndUpdate(req.params.id, req.body);
-//         res.status(200).json({ message: 'Alumno actualizado' });
-//     } catch (error) {
-//         res.status(500).json({ message: 'Error al actualizar el alumno' });
-//     }
-// }
-// actualiza un alumno
-export const actualizarAlumno = async (req, res) => {
-    try {
-        const { noCtrl, nombre, apellidoP, apellidoM, carrera, telefono, correo } = req.body;
-        await
-        Alumno.findByIdAndUpdate(req.params.id, { noCtrl, nombre, apellidoP, apellidoM, carrera, telefono, correo });
-        res.status(200).json({ message: 'Alumno actualizado' });
+//eliminar un alumno por su noCtrl
+export const eliminarAlumno = async (req, res) => {
+    const { noCtrl } = req.body;
+    const result = await Alumno.findOneAndDelete(noCtrl);
+    if (result) {
+        res.status(200).json({ message: 'Alumno eliminado' });
+    } else {
+        res.status(404).json({ message: 'Alumno no encontrado' });
     }
-    catch (error) {
-        res.status(500).json({ message: 'Error al actualizar el alumno' });
-    }
+    
 }
 
-export const eliminarAlumno = async (req, res) => {
-    try {
-        await Alumno.findByIdAndDelete(req.params.id);
-        res.status(200).json({ message: 'Alumno eliminado' });
-    } catch (error) {
-        res.status(500).json({ message: 'Error al eliminar el alumno' });
-    }
-}
 
 export const contarAlumnos = async (req, res) => {
     try {
@@ -76,5 +60,28 @@ export const contarAlumnos = async (req, res) => {
         res.status(200).json({ total });
     } catch (error) {
         res.status(500).json({ message: 'Error al contar los alumnos' });
+    }
+}
+
+//editar alumno
+export const actualizarAlumno = async (req, res) => {
+    try {
+        const { noCtrl, nombre, apellidoP, apellidoM, carrera, telefono, correo } = req.body;
+        const alumno = await Alumno.findOne();
+        if (alumno) {
+            alumno.noCtrl = noCtrl;
+            alumno.nombre = nombre;
+            alumno.apellidoP = apellidoP;
+            alumno.apellidoM = apellidoM;
+            alumno.carrera = carrera;
+            alumno.telefono = telefono;
+            alumno.correo = correo;
+            await alumno.save();
+            res.status(200).json({ message: 'Alumno actualizado' });
+        } else {
+            res.status(404).json({ message: 'Alumno no encontrado' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Error al actualizar el alumno' });
     }
 }
