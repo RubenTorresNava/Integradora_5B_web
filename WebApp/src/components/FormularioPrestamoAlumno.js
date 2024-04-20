@@ -80,16 +80,27 @@ const FormularioPrestamoAlumno = () => {
         </div>
       </div>
       <div className="d-grid gap-2">
-        {/* 
-                Boton para crear un préstamo
-                */}
+        <div className="d-grid gap-2 d-md-flex justify-content-md-end">
         <button
-          type="submit"
-          className="btn btn-success"
-          disabled={!datosAlumno.numeroControl || !datosAlumno.idLibro}
-        >
-          Crear Préstamo
-        </button>
+            type="submit"
+            className="btn btn-success"
+            disabled={!datosAlumno.numeroControl || !datosAlumno.idLibro}
+          >
+            Crear Préstamo
+          </button> 
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => {
+              setDatosAlumno({
+                numeroControl: "",
+                idLibro: "",
+              });
+            }}
+          >
+            Limpiar
+          </button>
+        </div>
       </div>
     </form>
   );

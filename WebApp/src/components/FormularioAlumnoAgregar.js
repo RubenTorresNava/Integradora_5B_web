@@ -83,12 +83,13 @@ const FormularioAlumnoAgregar = () => {
                 Numero de Control
               </label>
               <input
-                required
+                maxLength="10"
                 type="number"
                 className="form-control"
                 id="noCrtl"
                 name="noCtrl"
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="mb-3">
@@ -137,6 +138,7 @@ const FormularioAlumnoAgregar = () => {
               <input
                 required
                 type="number"
+                maxLength="10"
                 className="form-control"
                 id="telefono"
                 name="telefono"
@@ -216,16 +218,26 @@ const FormularioAlumnoAgregar = () => {
               </select>
             </div>
             <div className="d-grid">
-              {/* 
-                            Boton para enviar los datos del formulario
-                            */}
-              <button
-                type="submit"
-                className="btn btn-success"
-                disabled={!Object.values(datosAlumno).every(Boolean)}
-              >
-                Agregar
-              </button>
+              <div className="d-flex justify-content-between">
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  disabled={
+                    !datosAlumno.noCtrl ||
+                    !datosAlumno.nombre ||
+                    !datosAlumno.apellidoP ||
+                    !datosAlumno.apellidoM ||
+                    !datosAlumno.telefono ||
+                    !datosAlumno.correo ||
+                    !datosAlumno.carrera
+                  }
+                >
+                  Agregar
+                </button>
+                <button type="reset" className="btn btn-secondary">
+                  Limpiar
+                </button>
+              </div>
             </div>
           </form>
         </div>

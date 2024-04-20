@@ -3,6 +3,7 @@ import { obtenerLibro } from "../api/api";
 import CardLibro from "../../src/components/CardLibro";
 import swal from "sweetalert2";
 import BotonSubir from "../components/BotonSubir";
+import BotonAgregarLibromodal from "../components/BotonAgregarLibromodal";
 
 const Lista = () => {
   const [librosOriginales, setLibrosOriginales] = useState([]);
@@ -58,6 +59,7 @@ const Lista = () => {
   return (
     <div className="contenedor">
       <BotonSubir />
+      <BotonAgregarLibromodal />
       <h2 className="titulo">
         <b>Lista de Libros</b>
       </h2>
