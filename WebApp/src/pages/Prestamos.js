@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import CardPrestamo from "../../src/components/CardPrestamo";
 import { obtenerPrestamos } from "../api/api";
 import BotonModal1 from "../../src/components/BotonModal1";
+import BotonSubir from "../../src/components/BotonSubir";
 
 const Prestamos = () => {
   const [prestamos, setPrestamos] = useState([]);
@@ -43,6 +44,7 @@ const Prestamos = () => {
   return (
     <div className="contenedor">
       <BotonModal1 />
+      <BotonSubir />
       <h2 className="titulo">
         <b>Lista General De Prestamos</b>
       </h2>
