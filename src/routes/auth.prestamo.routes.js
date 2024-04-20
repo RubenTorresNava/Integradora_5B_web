@@ -7,5 +7,6 @@ router.post('/crear', authPrestamoController.crear);
 router.get('/obtenerPrestamos', authPrestamoController.obtenerPrestamos);
 router.get('/contarPrestamos', authPrestamoController.contarPrestamos);
 router.put('/devolver', authPrestamoController.devolver);
+router.put('/editar', authPrestamoController.editarFechaEntrega);
 
 export default router;

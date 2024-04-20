@@ -24,33 +24,34 @@ const BotonEditarPrestamoModal = ({
   const handleShow = () => setShow(true);
   // funcion para editar el prestamo
   const handleEdit = async () => {
-    try {
-      // se envia la informacion del prestamo para editarlo
-      const response = await actualizarPrestamo({
-        idPrestamo,
-        newFechaPrestamo,
-        newFechaEntrega,
-        newEstado,
-      });
-      const data = response.data;
-      console.log(data);
-      // se muestra un mensaje de exito con sweetalert
+    // se crea un objeto con los datos del prestamo
+    const prestamo = {
+      idPrestamo,
+      fechaPrestamo: newFechaPrestamo,
+      fechaEntrega: newFechaEntrega,
+      estado: newEstado,
+    };
+    // se llama a la funcion actualizarPrestamo
+    const response = await actualizarPrestamo(idPrestamo, prestamo);
+    // si la respuesta es correcta
+    if (response.status === 200) {
+      // se muestra un mensaje de exito
       Swal.fire({
         icon: "success",
-        title: "Prestamo editado con exito",
+        title: "Prestamo actualizado",
         showConfirmButton: false,
         timer: 1500,
       });
+      // se cierra el modal
+      handleClose();
       // se recarga la pagina
       window.location.reload();
-    } catch (error) {
-      // se muestra un mensaje de error con sweetalert
-      console.error(
-        "Error al editar el prestamo. Inténtalo de nuevo más tarde."
-      );
+    } else {
+      // si la respuesta es incorrecta
+      // se muestra un mensaje de error
       Swal.fire({
         icon: "error",
-        title: "Error al editar el prestamo. Inténtalo de nuevo más tarde.",
+        title: "Error al actualizar el prestamo",
         showConfirmButton: false,
         timer: 1500,
       });

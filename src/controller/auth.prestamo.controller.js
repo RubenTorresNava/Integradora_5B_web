@@ -29,6 +29,11 @@ export const crear = async (req, res) => {
             return res.status(400).json({ error: 'El alumno tiene un préstamo pendiente' });
         }
 
+        //La fecha de entrega es 7 dias despues de la fecha de prestamo
+        const fechaEntrega = new Date();
+        fechaEntrega.setDate(fechaEntrega.getDate() + 7);
+
+
         // Crear un nuevo préstamo
         const prestamo = new Prestamo({
             idPrestamo: Math.floor(Math.random() * 100),
@@ -123,6 +128,37 @@ export const devolver = async (req, res) => {
         res.status(200).json({ message: 'Libro devuelto correctamente' });
     } catch (error) {
         console.error('Error al devolver el libro:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+}
+
+//editar fecha de entrega
+export const editarFechaEntrega = async (req, res) => {
+    try {
+        const { idPrestamo, fechaEntrega } = req.body;
+
+        // Buscar el préstamo por su ID
+        const prestamo = await Prestamo.findOne({ idPrestamo });
+
+        if (!prestamo) {
+            return res.status(404).json({ error: 'No se encontró el préstamo' });
+        }
+
+        // Verificar si el libro ya ha sido devuelto
+        if (prestamo.estado === 'Devuelto') {
+            return res.status(400).json({ error: 'El libro ya ha sido devuelto' });
+        }
+
+        // Actualizar la fecha de entrega del préstamo
+        await Prestamo.updateOne(
+            { idPrestamo },
+            { fechaEntrega }
+        );
+
+        // Actualización exitosa
+        res.status(200).json({ message: 'Fecha de entrega actualizada correctamente' });
+    } catch (error) {
+        console.error('Error al editar la fecha de entrega:', error);
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 }
