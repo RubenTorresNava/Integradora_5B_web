@@ -117,7 +117,7 @@ export const devolver = async (req, res) => {
         );
 
         //eliminar el prestamo
-        await Prestamo.deleteOne({ idPrestamo });
+        // await Prestamo.deleteOne({ idPrestamo });
 
         // Devolución exitosa
         res.status(200).json({ message: 'Libro devuelto correctamente' });

@@ -40,11 +40,23 @@ export const obtenerAlumno = async (req, res) => {
     }
 }
 
+// export const actualizarAlumno = async (req, res) => {
+//     try {
+//         await Alumno.findByIdAndUpdate(req.params.id, req.body);
+//         res.status(200).json({ message: 'Alumno actualizado' });
+//     } catch (error) {
+//         res.status(500).json({ message: 'Error al actualizar el alumno' });
+//     }
+// }
+// actualiza un alumno
 export const actualizarAlumno = async (req, res) => {
     try {
-        await Alumno.findByIdAndUpdate(req.params.id, req.body);
+        const { noCtrl, nombre, apellidoP, apellidoM, carrera, telefono, correo } = req.body;
+        await
+        Alumno.findByIdAndUpdate(req.params.id, { noCtrl, nombre, apellidoP, apellidoM, carrera, telefono, correo });
         res.status(200).json({ message: 'Alumno actualizado' });
-    } catch (error) {
+    }
+    catch (error) {
         res.status(500).json({ message: 'Error al actualizar el alumno' });
     }
 }

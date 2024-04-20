@@ -12,3 +12,9 @@ export const crearAlumno = async (alumno) => axios.post(`${api}alumno/crear`, al
 export const login = async (credenciales) => axios.post(`${api}empleado/login`, credenciales);
 export const crearPrestamo = async (prestamo) => axios.post(`${api}prestamo/crear`, prestamo);
 export const devolverPrestamo = async (prestamo) => axios.put(`${api}prestamo/devolver`, prestamo);
+export const actualizarAlumno = async (id, alumno) => axios.put(`${api}alumno/actualizar/${id}`, alumno);
+export const eliminarAlumno = async (id) => axios.delete(`${api}alumno/eliminar/${id}`);
+export const obtenerAlumno = async (id) => axios.get(`${api}alumno/obtener/${id}`);
+export const actualizarLibro = async (id, libro) => axios.put(`${api}libro/actualizarLibro/${id}`, libro);
+export const eliminarLibro = async (id) => axios.delete(`${api}libro/eliminarLibro/${id}`);
+export const actualizarPrestamo = async (id, prestamo) => axios.put(`${api}prestamo/actualizar/${id}`, prestamo);
