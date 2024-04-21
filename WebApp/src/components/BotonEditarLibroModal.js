@@ -68,7 +68,17 @@ const BotonEditarLibroModal = ({
   //eliminar el libro
   const handleDelete = async () => {
     try {
-      // se envia el id del libro para eliminarlo
+      const result = await Swal.fire({
+        title: "¿Estás seguro de eliminar el alumno?",
+        text: "No podrás revertir esto!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, eliminar",
+        cancelButtonText: "Cancelar",
+      });
+      if(result.isConfirmed){      // se envia el id del libro para eliminarlo
       const response = await eliminarLibro(idLibro);
       const data = response.data;
       console.log(data);
@@ -83,6 +93,7 @@ const BotonEditarLibroModal = ({
       handleClose();
       // se recarga la pagina
       window.location.reload();
+    }
     } catch (error) {
       // se muestra un mensaje de error
       console.error(

@@ -21,34 +21,22 @@ const FormularioLibroAgregar = () => {
       [e.target.name]: e.target.value,
     });
   };
-  // funcion para enviar los datos del libro
+  //agregar un libro
   const handleSubmit = async (e) => {
-    // evita que se recargue la pagina
     e.preventDefault();
-
     try {
-      // Crear un nuevo objeto con los nombres de campos esperados por el backend
-      const libroParaEnviar = {
-        clasificacion: datosLibro.clasificacion,
-        cantidad: datosLibro.cantidad,
-        titulo: datosLibro.titulo,
-        autor: datosLibro.autor,
-        editorial: datosLibro.editorial,
-        apartado: datosLibro.apartado,
-        idLibro: datosLibro.idLibro,
-      };
-
-      // Envía los datos del nuevo libro al servidor
-      await crearLibro(libroParaEnviar);
-
-      // Muestra una alerta de éxito
+      // se envia la informacion del libro para agregarlo
+      const response = await crearLibro(datosLibro);
+      const data = response.data;
+      console.log(data);
+      // se muestra un mensaje de exito
       Swal.fire({
         icon: "success",
-        title: "Libro agregado",
+        title: "Libro agregado con exito",
         showConfirmButton: false,
-        timer: 1000,
+        timer: 1500,
       });
-      // Limpia los campos del formulario
+      // se limpian los campos
       setDatosLibro({
         clasificacion: "",
         cantidad: "",
@@ -59,11 +47,11 @@ const FormularioLibroAgregar = () => {
         idLibro: "",
       });
     } catch (error) {
-      // Muestra una alerta de error
+      // se muestra un mensaje de error
+      console.error("Error al agregar el libro. Inténtalo de nuevo más tarde.");
       Swal.fire({
         icon: "error",
-        title: "Error",
-        text: error.response.data,
+        title: "Error al agregar el libro. Inténtalo de nuevo más tarde.",
       });
     }
   };
