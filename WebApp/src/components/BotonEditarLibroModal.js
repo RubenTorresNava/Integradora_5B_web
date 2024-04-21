@@ -26,36 +26,40 @@ const BotonEditarLibroModal = ({
   const handleClose = () => setShow(false);
   // funcion para abrir el modal
   const handleShow = () => setShow(true);
-  // funcion para editar el libro
+  //actualizar el libro
   const handleEdit = async () => {
     try {
-      // se envia la informacion del libro para editarlo
+      // se envia la informacion del libro para actualizarlo
       const response = await actualizarLibro({
         idLibro,
-        newTitulo,
-        newAutor,
-        newEditorial,
-        newClasificacion,
-        newApartado,
-        newCantidad,
+        titulo: newTitulo,
+        autor: newAutor,
+        editorial: newEditorial,
+        clasificacion: newClasificacion,
+        apartado: newApartado,
+        cantidad: newCantidad,
       });
       const data = response.data;
       console.log(data);
-      // se muestra un mensaje de exito con sweetalert
+      // se muestra un mensaje de exito
       Swal.fire({
         icon: "success",
-        title: "Libro editado con exito",
+        title: "Libro actualizado con exito",
         showConfirmButton: false,
         timer: 1500,
       });
+      // se cierra el modal
+      handleClose();
       // se recarga la pagina
       window.location.reload();
     } catch (error) {
-      // se muestra un mensaje de error con sweetalert
-      console.error("Error al editar el libro. Inténtalo de nuevo más tarde.");
+      // se muestra un mensaje de error
+      console.error(
+        "Error al actualizar el libro. Inténtalo de nuevo más tarde."
+      );  
       Swal.fire({
         icon: "error",
-        title: "Error al editar el libro. Inténtalo de nuevo más tarde.",
+        title: "Error al actualizar el libro. Inténtalo de nuevo más tarde.",
         showConfirmButton: false,
         timer: 1500,
       });
