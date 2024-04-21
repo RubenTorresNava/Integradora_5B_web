@@ -65,35 +65,24 @@ const BotonEditarLibroModal = ({
       });
     }
   };
-  // funcion para eliminar el libro
+  //eliminar el libro
   const handleDelete = async () => {
     try {
-      // hacer la eliminacion pero con confirmacion con sweetalert
-      const result = await Swal.fire({
-        title: "¿Estás seguro de eliminar el libro?",
-        text: "No podrás revertir esto!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Sí, eliminarlo!",
+      // se envia el id del libro para eliminarlo
+      const response = await eliminarLibro(idLibro);
+      const data = response.data;
+      console.log(data);
+      // se muestra un mensaje de exito
+      Swal.fire({
+        icon: "success",
+        title: "Libro eliminado con exito",
+        showConfirmButton: false,
+        timer: 1500,
       });
-      // si se confirma la eliminacion
-      if (result.isConfirmed) {
-        // se envia el id del libro para eliminarlo
-        const response = await eliminarLibro(idLibro);
-        const data = response.data;
-        console.log(data);
-        // se muestra un mensaje de exito
-        Swal.fire({
-          icon: "success",
-          title: "Libro eliminado con exito",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        // se recarga la pagina
-        window.location.reload();
-      }
+      // se cierra el modal
+      handleClose();
+      // se recarga la pagina
+      window.location.reload();
     } catch (error) {
       // se muestra un mensaje de error
       console.error(

@@ -42,7 +42,6 @@ export const actualizarLibro = async (req, res) => {
         const { idLibro, titulo, autor, editorial, clasificacion, apartado, cantidad } = req.body;
         const actualizar = await Libro.findOneAndUpdate({ idLibro ,titulo, autor, editorial, clasificacion, apartado, cantidad });
         res.status(200).json({message: 'Libro actualizado' });
-        console.log(actualizar)
     }catch (error) {
         res.status(500).json({ message: 'Error al actualizar el libro' });
     }
@@ -50,9 +49,10 @@ export const actualizarLibro = async (req, res) => {
 
 export const eliminarLibro = async (req, res) => {
     try {
-        await Libro.findByIdAndDelete(req.params.id);
-        res.status(200).json({ message: 'Libro eliminado' });
-    } catch (error) {
+        const {idLibro} = req.body;
+        const eliminar = await Libro.findOneAndDelete(idLibro);
+        res.status(200).json({message: 'Libro eliminado' });
+    }catch (error) {
         res.status(500).json({ message: 'Error al eliminar el libro' });
     }
 }
