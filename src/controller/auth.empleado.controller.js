@@ -24,9 +24,9 @@ export const login = async (req, res) => {
 //resetear contraseña de empleado
 export const actualizarPassword = async (req, res) => {
     try {
-        const { usuario, password } = req.body;
+        const { noEmpleado, password } = req.body;
 
-        const existing = await Empleado.findOne({ usuario });
+        const existing = await Empleado.findOne({ noEmpleado });
         if (existing) {
             // Verificar si la contraseña nueva es igual a la anterior
             if (existing.password === password) {
@@ -37,7 +37,7 @@ export const actualizarPassword = async (req, res) => {
             await existing.save();
             return res.status(200).json({ message: 'Contraseña actualizada' });
         }
-
+        console.log(req.body);
         return res.status(400).json({ message: 'El usuario no existe' });
     } catch (error) {
         console.error(error);
