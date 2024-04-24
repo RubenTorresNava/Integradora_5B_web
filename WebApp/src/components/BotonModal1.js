@@ -14,7 +14,7 @@ const BotonModal1 = () => {
       {/* 
         Boton para abrir el modal
         */}
-      <Button variant="primary" onClick={handleShow} style={styles.boton}>
+      <Button variant="primary" title="Hacer Nuevo Prestamo" onClick={handleShow} style={styles.boton}>
         <FaPlus />
       </Button>
       {/* 

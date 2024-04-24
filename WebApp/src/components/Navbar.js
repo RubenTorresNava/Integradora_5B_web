@@ -50,7 +50,7 @@ const Navbar = () => {
           {/*
                     Boton para cerrar sesion
                     */}
-          <button onClick={handleLogout} className="btn btn-outline-danger">
+          <button onClick={handleLogout} title="Salir del sistema" className="btn btn-outline-danger">
             Cerrar sesion
           </button>
         </div>

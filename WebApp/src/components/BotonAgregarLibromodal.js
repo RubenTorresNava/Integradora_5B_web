@@ -20,7 +20,7 @@ const BotonAgregarLibroModal = () => {
       {/* 
             Boton para abrir el modal
             */}
-      <Button variant="primary" onClick={handleShow} style={styles.boton}>
+      <Button variant="primary" title="Agregar Un Libro" onClick={handleShow} style={styles.boton}>
         <FaPlus />
       </Button>
       {/*

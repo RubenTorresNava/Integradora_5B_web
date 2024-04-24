@@ -11,7 +11,7 @@ const BotonSubir = () => {
   };
 
   return (
-    <button onClick={handleClick} style={styles.boton}>
+    <button onClick={handleClick} title="Ir arriba" style={styles.boton}>
       <FaArrowUp />
     </button>
   );

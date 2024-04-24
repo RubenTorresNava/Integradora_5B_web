@@ -110,7 +110,7 @@ const BotonEditarLibroModal = ({
   // estructura del boton
   return (
     <>
-      <Button variant="warning" onClick={handleShow}>
+      <Button variant="warning" title="Editar Informacion" onClick={handleShow}>
         <FaEdit />
       </Button>
       <Modal show={show} onHide={handleClose}>
@@ -183,7 +183,7 @@ const BotonEditarLibroModal = ({
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={handleDelete}>
+          <Button variant="danger" title="Eliminar Libro" onClick={handleDelete}>
             <FaTrashAlt />
           </Button>
           <Button variant="secondary" onClick={handleClose}>

@@ -37,7 +37,7 @@ const CardLibro = ({
         {/* contenedor para los botones separados */}
         <div className="d-flex justify-content-between">
           <button
-            className={`btn ${cantidad === 0 ? "btn-danger" : "btn-success"}`}
+            title="Estado del Libro" className={`btn ${cantidad === 0 ? "btn-danger" : "btn-success"}`}
             disabled={cantidad === 0}
           >
             {cantidad === 0 ? "No disponible" : "Disponible"}
