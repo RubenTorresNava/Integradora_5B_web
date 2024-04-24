@@ -60,7 +60,7 @@ const BotonEditarPrestamoModal = ({
   // estructura del boton
   return (
     <>
-      <Button variant="warning" onClick={handleShow}>
+      <Button variant="warning" title="Alargar Duracion" onClick={handleShow}>
         <FaEdit />
       </Button>
       <Modal show={show} onHide={handleClose}>
@@ -84,8 +84,8 @@ const BotonEditarPrestamoModal = ({
           <Button variant="secondary" onClick={handleClose}>
             Cerrar
           </Button>
-          <Button variant="success" onClick={handleEdit}>
-            Editar prestamo
+          <Button variant="success" title="Guardar" onClick={handleEdit}>
+            Guardar
           </Button>
         </Modal.Footer>
       </Modal>

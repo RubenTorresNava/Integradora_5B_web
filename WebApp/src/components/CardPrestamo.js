@@ -58,11 +58,13 @@ const CardPrestamo = ({ idPrestamo, fechaPrestamo, fechaEntrega, estado }) => {
         {/* contenedor para los botones separados */}
         <div className="d-flex justify-content-between">
           <button
+            
             className={`btn ${
               estado === "Devuelto" ? "btn-secondary" : "btn-success"
             }`}
             onClick={handleClick}
             disabled={estado === "Devuelto"}
+            title="Estado del Prestamo"
           >
             {estado === "Devuelto" ? "Terminado" : "Terminar préstamo"}
           </button>
