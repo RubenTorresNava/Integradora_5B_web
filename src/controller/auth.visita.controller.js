@@ -3,7 +3,8 @@ import { Visitas } from "../model/all.models.js";
 //crear visita
 export const crear = async (req, res) => {
     const documento = req.body;
-
+    const fecha = new Date();
+    documento.fechaVisita = fecha;
     try {
         await Visitas.create(documento);
         res.status(201).send('Documento guardado correctamente');

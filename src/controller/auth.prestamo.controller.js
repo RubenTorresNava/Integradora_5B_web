@@ -40,7 +40,7 @@ export const crear = async (req, res) => {
             libro: libro._id,
             alumno: alumno._id,
             fechaPrestamo: new Date(),
-            fechaEntrega: new Date(),
+            fechaEntrega,
             estado: 'Prestado'
         });
 

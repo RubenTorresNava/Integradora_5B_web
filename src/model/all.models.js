@@ -68,7 +68,6 @@ const visitasSchema = new mongoose.Schema({
     idVisita: { type: Number, required: true, unique: true, autoimcrement: true},
     motivo: { type: String, required: true },
     fechaVisita: { type: String, required: true },
-    horaEntrada: { type: String, required: true },
     noCtrl: {
         type: String,
         required: true
