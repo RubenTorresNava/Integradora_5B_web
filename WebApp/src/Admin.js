@@ -8,6 +8,7 @@ import Inicio from "../src/pages/Inicio";
 import Lista from "../src/pages/Lista";
 import Prestamos from "../src/pages/Prestamos";
 import Alumnos from "../src/pages/Alumnos";
+import Visitas from "../src/pages/Visitas";
 
 import AlumnoAgregar from "../src/pages/AlumnoAgregar";
 // estilos
@@ -26,6 +27,7 @@ function Admin() {
           <Route path="/prestamos" element={<Prestamos />} />
           <Route path="/alumnos" element={<Alumnos />} />
           <Route path="/agregar-alumno" element={<AlumnoAgregar />} />
+          <Route path="/visitas" element={<Visitas />} />
         </Routes>
       </div>
     </div>

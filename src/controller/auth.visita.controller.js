@@ -14,18 +14,16 @@ export const crear = async (req, res) => {
     }
 };
 
-//obtener visitas
+//obtener todas las visitas
 export const obtenerVisitas = async (req, res) => {
-    // Obtener todos los documentos de la base de datos
-    Visitas.find({}, (err, visitas) => {
-      if (err) {
+    try {
+        const visitas = await Visitas.find({});
+        res.status(200).send(visitas);
+    } catch (err) {
         console.error(err);
         res.status(500).send('Error interno del servidor');
-      } else {
-        res.status(200).send(visitas);
-      }
-    });
-  };
+    }
+};
 
 //contar los docuementos de la coleccion visitas
 export const contarVisitas = async (req, res) => {
